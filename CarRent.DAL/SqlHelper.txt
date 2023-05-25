@@ -1,0 +1,12 @@
+1.autoEmailConfirmation triggre
+
+create trigger autoEmailConfirmation
+on dbo.AspNetUsers
+after insert 
+as 
+begin
+update AspNetUsers
+set EmailConfirmed = 1
+from inserted i
+where i.Id = AspNetUsers.Id
+end
